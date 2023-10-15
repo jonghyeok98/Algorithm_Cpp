@@ -140,7 +140,8 @@
 ## 병합 정렬
 > 이미 정렬된 부분 집합들을 효율적으로 병합해 전체를 정렬하는 방식
 
-
+- 병합 정렬은 분할 정복 방식을 사용해 데이터를 분할하고 분할한 집합을 정렬하며 합치는 알고리즘
+- 시간 복잡도는 $O(nlogn)$ 이다
 
 <br>
 
@@ -149,6 +150,24 @@
     <div markdown="0">
     <img src="./Images/Merge_ADL1.png" width = 600>
     <img src="./Images/Merge_ADL2.png" width = 600>
+    </div>
+</details>
+
+<br>
+
+<details>
+    <summary> 수행 과정(PNG) </summary>
+    <div markdown="0">
+    <img src="./Images/Merge_Process.png" width = 600>
+    </div>
+</details>
+
+<br>
+
+<details>
+    <summary> 수행 과정(GIF) </summary>
+    <div markdown="0">
+    <img src="./Images/Merge.gif" width = 600>
     </div>
 </details>
 
