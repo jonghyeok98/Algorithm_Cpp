@@ -39,7 +39,7 @@
 
 <br>
 
-<img src="./images/Vector.png" width=600>
+<img src="./Images/Vector.png" width=600>
 
 <br>
 
