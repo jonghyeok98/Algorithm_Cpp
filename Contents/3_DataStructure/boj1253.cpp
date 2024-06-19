@@ -44,9 +44,11 @@ int main(void)
 			{
 				if (start_idx!=i && end_idx!=i)
 				{
+					// 같은 수가 아닐 때 즉, 서로 다른 두 수의 합일 때
 					count++;
 					break;
 				}
+				// 자기 자신을 포함하지 않도록
 				else if (start_idx ==i)
 					start_idx++;
 				else if (end_idx == i)
