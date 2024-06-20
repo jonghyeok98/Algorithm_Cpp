@@ -22,11 +22,7 @@ int main(void)
 	vector<int> result(N, 0);
 
 	for (int i = 0; i < N; i++)
-	{
-		int tmp;
-		cin >> tmp;
-		v[i] = tmp;
-	}
+		cin >> v[i];
 
 	result[N - 1] = -1;
 	s.push(v[N - 1]);
