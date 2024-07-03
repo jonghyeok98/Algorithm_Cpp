@@ -1,6 +1,7 @@
 // boj s4 1920
 // 수 찾기
 #include<iostream>
+#include<vector>
 #include<algorithm>
 
 using namespace std;
