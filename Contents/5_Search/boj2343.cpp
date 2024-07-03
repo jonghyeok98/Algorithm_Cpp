@@ -1,6 +1,7 @@
 // boj s1 2343
 // 기타 레슨
 #include<iostream>
+#include<vector>
 #include<algorithm>
 
 using namespace std;
