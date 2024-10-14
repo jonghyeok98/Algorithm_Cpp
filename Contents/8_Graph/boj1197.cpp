@@ -2,87 +2,98 @@
 // 최소 스패닝 트리
 
 #include <iostream>
+#include <cmath>
+#include <algorithm>
 #include <vector>
+#include <stack>
+#include <deque>
 #include <queue>
+#include <string>
+#include <climits>
 
 using namespace std;
 
+using int32 = long;
+using int64 = long long;
+
 typedef struct Edge
 {
-	int start, end, weight;
-	bool operator > (const Edge& temp) const
-	{
-		return weight > temp.weight;
-	}
+    int start, end, weight;
+
+    bool operator > (const Edge& edge) const
+    {
+        return weight > edge.weight;
+    }
 };
 
-static priority_queue<Edge, vector<Edge>, greater<>> pq;
+static int N, M;
 static vector<int> parent;
-static int V, E;
+static priority_queue<Edge, vector<Edge>, greater<>> pq;
 
+int MST();
 void Union(int a, int b);
 int Find(int a);
-int MST();
 
-int main(void)
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    cin >> N >> M;
+
+    parent.resize(N + 1);
+
+    for (int i = 1; i <= N; i++)
+        parent[i] = i;
+
+    for(int i=0; i<M; i++)
+    {
+        int s, e, w;
+        cin >> s >> e >> w;
+        pq.push({ s, e, w });
+    }
+
+    cout << MST();
+
+    return 0;
+}
+
+int MST()
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+    int result = 0;
+    int usedEdge = 0;
 
-	cin >> V >> E;
+    while(usedEdge < N-1)
+    {
+        Edge edge = pq.top();
+        pq.pop();
 
-	parent.resize(V+1);
-	for (int i = 0; i <= V; i++)
-		parent[i] = i;
+        if(Find(edge.start) != Find(edge.end))
+        {
+            Union(edge.start, edge.end);
+            usedEdge++;
+            result += edge.weight;
+        }
+    }
 
-	for(int i=0; i<E; i++)
-	{
-		int u, v, w;
-		cin >> u >> v >> w;
-		pq.push({u, v, w});
-	}
-
-	cout << MST();
-
-	return 0;
+    return result;
 }
 
 
 void Union(int a, int b)
 {
-	a = Find(a);
-	b = Find(b);
+    a = Find(a);
+    b = Find(b);
 
-	if (a != b)
+    if(a!=b)
 		parent[b] = a;
 }
 
 int Find(int a)
 {
-	if (parent[a] == a)
-		return a;
-
-	return parent[a] = Find(parent[a]);}
-
-int MST()
-{
-	int useEdge = 0;;
-	int result = 0;
-
-	while(useEdge < V-1)
-	{
-		Edge now = pq.top();
-		pq.pop();
-
-		if(Find(now.start) != Find(now.end))
-		{
-			Union(now.start, now.end);
-			result += now.weight;
-			useEdge++;
-		}
-	}
-
-	return result;
+    if (parent[a] == a)
+        return a;
+    return parent[a] = Find(parent[a]);
 }
+
 
